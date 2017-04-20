@@ -116,7 +116,12 @@ class DonateItem extends CI_Controller {
 
 	public function Detail($id){
 		$data['id'] = $id;
-		$data['shoe'] = $this->donateModel->getShoeDetail($id);
+		$shoeDetail = $this->donateModel->getShoeDetail($id);
+		$data['shoe'] = $shoeDetail;
+
+		$shoeType = $shoeDetail['type'];
+		$data['similar'] = $this->donateModel->getSimilarShoe($id,$shoeType);
+
 		$data['title'] = "DonateDetail : " . $data['shoe']['name'];
 		$this->load->view('template/header',$data);
 		$this->load->view('donatedetail',$data);

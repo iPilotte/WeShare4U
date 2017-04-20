@@ -151,4 +151,15 @@ class DonateModel extends CI_Model {
       return false;
     }
   }
+
+  public function getSimilarShoe($id,$type){
+    //SELECT * FROM shoesdonate WHERE type LIKE 'Fashion_Sneakers' AND id NOT LIKE '6' ORDER BY RAND() LIMIT 5
+    $sql = "SELECT * FROM shoesdonate WHERE id NOT LIKE ? AND type LIKE ? ORDER BY RAND() LIMIT 5";
+    $query = $this->db->query($sql,array($id,$type));
+    if($query->num_rows() >= 1){
+      return $query->result_array();
+    }else{
+      return false;
+    }
+  }
 }
