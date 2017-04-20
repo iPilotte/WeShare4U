@@ -1,0 +1,372 @@
+<style>
+
+.modal-dialog{
+      overflow-y: initial !important
+}
+.modal-body{
+  height: 400px;
+  overflow-y: auto;
+}
+</style>
+<!-- SizeChart Modal -->
+<div class="modal fade" id="sizeChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Size Chart</h4>
+        <div class="row">
+          <ul class="nav nav-tabs" id="tabContent">
+          <li class="active"><a href="#menSize" data-toggle="tab">Men</a></li>
+          <li><a href="#womenSize" data-toggle="tab">Women</a></li>
+          <li><a href="#kids_babySize" data-toggle="tab">Kids & Baby (0-8 Years)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="menSize">
+            <table class="table table-striped">
+                 <thread>
+                    <th>US</th>
+                    <th>EUR</th>
+                    <th>CM</th>
+                </thread>
+                <tr>
+                  <td>6</td>
+                  <td>39</td>
+                  <td>23.5</td>
+                </tr>
+                <tr>
+                  <td>6.5</td>
+                  <td>39</td>
+                  <td>24.1</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>40</td>
+                  <td>24.4</td>
+                </tr>
+                <tr>
+                  <td>7.5</td>
+                  <td>40-41</td>
+                  <td>24.8</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>41</td>
+                  <td>25.4</td>
+                </tr>
+                <tr>
+                  <td>8.5</td>
+                  <td>41-42</td>
+                  <td>25.7</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>42</td>
+                  <td>26</td>
+                </tr>
+                <tr>
+                  <td>9.5</td>
+                  <td>42-43</td>
+                  <td>26.7</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>43</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <td>10.5</td>
+                  <td>43-44</td>
+                  <td>27.3</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>44</td>
+                  <td>27.9</td>
+                </tr>
+                <tr>
+                  <td>11.5</td>
+                  <td>44-45</td>
+                  <td>28.3</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>45</td>
+                  <td>28.6</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>46</td>
+                  <td>29.4</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>47</td>
+                  <td>30.2</td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td>48</td>
+                  <td>31</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>49</td>
+                  <td>31.8</td>
+                </tr>
+            </table>
+          </div>
+
+          <div class="tab-pane" id="womenSize">
+            <table class="table table-striped">
+             <thread>
+                  <th>US</th>
+                  <th>EUR</th>
+                  <th>CM</th>
+              </thread>
+              <tr>
+                <td>4</td>
+                <td>35</td>
+                <td>20.8</td>
+              </tr>
+              <tr>
+                <td>4.5</td>
+                <td>35</td>
+                <td>21.3</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>35-36</td>
+                <td>21.6</td>
+              </tr>
+              <tr>
+                <td>5.5</td>
+                <td>36</td>
+                <td>22.2</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>36-37</td>
+                <td>22.5</td>
+              </tr>
+              <tr>
+                <td>6.5</td>
+                <td>37</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>37-38</td>
+                <td>23.5</td>
+              </tr>
+              <tr>
+                <td>7.5</td>
+                <td>38</td>
+                <td>23.8</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>38-39</td>
+                <td>24.1</td>
+              </tr>
+              <tr>
+                <td>8.5</td>
+                <td>39</td>
+                <td>24.6</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>39-40</td>
+                <td>25.1</td>
+              </tr>
+              <tr>
+                <td>9.5</td>
+                <td>40</td>
+                <td>25.4</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>40-41</td>
+                <td>25.9</td>
+              </tr>
+              <tr>
+                <td>10.5</td>
+                <td>41</td>
+                <td>26.2</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>41-42</td>
+                <td>26.7</td>
+              </tr>
+              <tr>
+                <td>11.5</td>
+                <td>42</td>
+                <td>27.1</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>42-43</td>
+                <td>27.6</td>
+              </tr>
+            </table>
+          </div>
+
+
+          <div class="tab-pane" id="kids_babySize">
+            <table class="table table-striped">
+                 <thread>
+                    <th>US</th>
+                    <th>EUR</th>
+                    <th>CM</th>
+                </thread>
+                <tr>
+                  <td>0.5</td>
+                  <td>16</td>
+                  <td>8.3</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>16</td>
+                  <td>8.9</td>
+                </tr>
+                <tr>
+                  <td>1.5</td>
+                  <td>17</td>
+                  <td>9.2</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>17</td>
+                  <td>9.5</td>
+                </tr>
+                <tr>
+                  <td>2.5</td>
+                  <td>18</td>
+                  <td>10.2</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>18</td>
+                  <td>10.5</td>
+                </tr>
+                <tr>
+                  <td>3.5</td>
+                  <td>19</td>
+                  <td>10.8</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>19</td>
+                  <td>11.4</td>
+                </tr>
+                <tr>
+                  <td>4.5</td>
+                  <td>20</td>
+                  <td>11.7</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>20</td>
+                  <td>12.1</td>
+                </tr>
+                <tr>
+                  <td>5.5</td>
+                  <td>21</td>
+                  <td>12.7</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>22</td>
+                  <td>13</td>
+                </tr>
+                <tr>
+                  <td>6.5</td>
+                  <td>22</td>
+                  <td>13.3</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>23</td>
+                  <td>14</td>
+                </tr>
+                <tr>
+                  <td>7.5</td>
+                  <td>24</td>
+                  <td>14.3</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>24</td>
+                  <td>14.6</td>
+                </tr>
+                <tr>
+                  <td>8.5</td>
+                  <td>25</td>
+                  <td>15.2</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>25</td>
+                  <td>15.6</td>
+                </tr>
+                <tr>
+                  <td>9.5</td>
+                  <td>26</td>
+                  <td>15.9</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>27</td>
+                  <td>16.5</td>
+                </tr>
+                <tr>
+                  <td>10.5</td>
+                  <td>27</td>
+                  <td>16.8</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>28</td>
+                  <td>17.1</td>
+                </tr>
+                <tr>
+                  <td>11.5</td>
+                  <td>29</td>
+                  <td>17.8</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>30</td>
+                  <td>18.1</td>
+                </tr>
+                <tr>
+                  <td>12.5</td>
+                  <td>30</td>
+                  <td>18.4</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>31</td>
+                  <td>19.1</td>
+                </tr>
+                <tr>
+                  <td>13.5</td>
+                  <td>31</td>
+                  <td>19.4</td>
+                </tr>
+            </table>
+         </div>
+      <div class="modal-footer"><p>
+        * These are only general measurements.
+      </p><p>
+        * Sizing may vary slightly from brand to brand.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End SizeChart Modal -->

@@ -1,0 +1,375 @@
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid{
+  margin: 0;
+  padding: 0;
+  width:100%;
+}
+
+.banner{
+  background-image: url("../img/banner_2.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.85);
+}
+
+.navbar-right{
+  padding-right: 7%;
+}
+
+.modal-open {
+    overflow: scroll;
+    padding-right: 0 !important;
+}
+
+body.weshare{
+  margin: 0;
+	padding: 0;
+	height: 100%;
+  width: 100%;
+  background-image : url("../img/bg.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.donorButton {
+    display: inline-block;
+    /* width: 150px; */
+    padding: 5em;
+    background-color: #4285F4;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+.donorButton:hover{
+  transition-duration: 0.7s;
+  background-color: #223569;
+  color: white;
+  text-decoration: none;
+}
+
+.recipientButton {
+    display: inline-block;
+    padding: 5em;
+    background-color: #F4B400;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+.recipientButton:hover{
+  transition-duration: 0.7s;
+  background-color: #856210;
+  color: white;
+  text-decoration: none;
+}
+
+div.donatelist{
+  background-color: #cdd5f7;
+  width: 100%;
+  height: auto;
+}
+
+div.donateitem{
+  /*margin-bottom: 1%;*/
+  margin:1.5%;
+  height:200px;
+  width:170px;
+  overflow: hidden;
+  background: rgba(255,255,255,1);
+  padding: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-transition: background .5s ease-out;
+  -moz-transition: background .5s ease-out;
+  -o-transition: background .5s ease-out;
+  transition: background .5s ease-out;
+}
+
+div.donateitem:hover{
+  /*margin-bottom: 1%;*/
+  background: rgba(255,255,255,1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.donateitem a{
+  color:#000;
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.donateitem a:hover{
+  text-decoration:none;
+  border:1px solid transparent;
+  position:relative;
+  z-index:9;
+}
+
+.sizeChart a{
+  color:#000;
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.sizeChart a:hover{
+  text-decoration:none;
+  border:0.1px solid transparent;
+}
+
+.donateImage{
+  height: 80%;
+  position:relative;
+  z-index:2;
+  vertical-align: middle;
+}
+
+.donateImage:hover{
+  opacity: 0.9;
+}
+
+.donateText{
+  text-align:center;
+  font-weight:50;
+  font-size:14px;
+  padding-top:10px;
+  padding-bottom: 20px;
+  position:relative;
+  z-index:3;
+  background-color: #fff;
+}
+
+div.news {
+  background-color: #cdd5f7;
+}
+
+.newsImg {
+    display: inline-block;
+    padding: 4em;
+    background-color: #4285F4;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+}
+
+.newsImg:hover{
+  transition-duration: 0.7s;
+  background-color: #223569;
+  color: white;
+  text-decoration: none;
+}
+
+div.footer {
+  color: white;
+  width: 100%;
+  height: auto;
+}
+
+.footer-above {
+  padding-top: 10px;
+  background-color: #BDC7F3;
+  color: #616161;
+}
+
+.footer-col {
+  margin-bottom: 20px;
+}
+
+.footer-below {
+  padding: 10px 0;
+  background-color: #BDC7F3;
+}
+
+
+.half-offset{
+    margin-left:4.166666667%
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+.stylish-input-group .form-control{
+	border-right:0;
+	box-shadow:0 0 0;
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+/* Bootstrap update */
+.btn-wonder {
+color: #FFFFFF;
+background-color: #0288D1;
+border-color: #3EA1D6;
+}
+
+.btn-wonder:hover,
+.btn-wonder:focus,
+.btn-wonder:active,
+.btn-wonder.active,
+.open .dropdown-toggle.btn-wonder {
+color: #FFFFFF;
+background-color: #8251C2;
+border-color: #3EA1D6;
+}
+
+.btn-wonder:active,
+.btn-wonder.active,
+.open .dropdown-toggle.btn-wonder {
+background-image: none;
+}
+
+.btn-wonder.disabled,
+.btn-wonder[disabled],
+fieldset[disabled] .btn-wonder,
+.btn-wonder.disabled:hover,
+.btn-wonder[disabled]:hover,
+fieldset[disabled] .btn-wonder:hover,
+.btn-wonder.disabled:focus,
+.btn-wonder[disabled]:focus,
+fieldset[disabled] .btn-wonder:focus,
+.btn-wonder.disabled:active,
+.btn-wonder[disabled]:active,
+fieldset[disabled] .btn-wonder:active,
+.btn-wonder.disabled.active,
+.btn-wonder[disabled].active,
+fieldset[disabled] .btn-wonder.active {
+background-color: #0288D1;
+border-color: #3EA1D6;
+}
+
+.btn-wonder .badge {
+color: #0288D1;
+background-color: #FFFFFF;
+}
+
+.navbar-wonder { background-color: #BDC7F3}
+.navbar-wonder .navbar-nav>.active>a:hover,.navbar-wonder .navbar-nav>li>a:hover, .navbar-wonder .navbar-nav>li>a:focus { background-color: #2979FF}
+.navbar-wonder .navbar-nav>.active>a,.navbar-wonder .navbar-nav>.open>a,.navbar-wonder .navbar-nav>.open>a, .navbar-wonder .navbar-nav>.open>a:hover,.navbar-wonder .navbar-nav>.open>a, .navbar-wonder .navbar-nav>.open>a:hover, .navbar-wonder .navbar-nav>.open>a:focus { background-color: #080808}
+.dropdown-menu { background-color: #FFFFFF}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-color: #428BCA}
+.navbar-wonder { background-image: none; }
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { background-image: none; }
+.navbar-wonder { border-color: #BDBDBD}
+.navbar-wonder .navbar-brand { color: #333333}
+.navbar-wonder .navbar-brand:hover { color: #FFFFFF}
+.navbar-wonder .navbar-nav>li>a { color: #333333}
+.navbar-wonder .navbar-nav>li>a:hover, .navbar-wonder .navbar-nav>li>a:focus { color: #FFFFFF}
+.navbar-wonder .navbar-nav>.active>a,.navbar-wonder .navbar-nav>.open>a, .navbar-wonder .navbar-nav>.open>a:hover, .navbar-wonder .navbar-nav>.open>a:focus { color: #FFFFFF}
+.navbar-wonder .navbar-nav>.active>a:hover, .navbar-wonder .navbar-nav>.active>a:focus { color: #FFFFFF}
+.dropdown-menu>li>a { color: #333333}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus { color: #FFFFFF}
+.navbar-wonder .navbar-nav>.dropdown>a .caret { border-top-color: #999999}
+.navbar-wonder .navbar-nav>.dropdown>a:hover .caret { border-top-color: #FFFFFF}
+.navbar-wonder .navbar-nav>.dropdown>a .caret { border-bottom-color: #999999}
+.navbar-wonder .navbar-nav>.dropdown>a:hover .caret { border-bottom-color: #FFFFFF}
+
+.navbar-toggle
+{
+    position:relative;
+    float:right;
+    padding:9px 10px;
+    margin-top:8px;
+    margin-right:15px;
+    margin-bottom:8px;
+    background-color:transparent;
+    background-image:none;
+    border:1px solid #333333;
+    border-radius:4px
+}
+
+.icon-bar
+{
+    display:block;
+    width:22px;
+    height:2px;
+    border-radius:1px;
+    border:1px solid #2979FF;
+}
+
+
+/*-----------SUB MENU FOR MULTILEVEL NAVBAR-----------------*/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.caret-right {
+float:right;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-left: 5px solid;
+  border-left-color:#999999;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  margin-top:5px;
+  margin-right:-8px;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #000;
+}
+
+.navbar-wonder .navbar-nav>.open>a:focus{
+  background-color: #337ab7;
+}
+/*-----------SUB MENU FOR MULTILEVEL NAVBAR-----------------*/
