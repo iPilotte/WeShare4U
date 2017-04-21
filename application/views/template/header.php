@@ -18,7 +18,18 @@
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       </div>
       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: right; padding-top:2%">
-        <?php if(isset($_SESSION['firstName'])) { if(isset($_SESSION['role'])){ if($_SESSION['role']=='recipient') echo '<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>   |   ';} echo "Hi <a href=" . base_url('index.php/profile') ." name='goProfile'>" .$_SESSION['firstName'] . " " . $_SESSION['lastName'] . "</a>"; ?>
+        <?php if(isset($_SESSION['firstName'])) {
+          if(isset($_SESSION['role']))
+          {
+          if($_SESSION['role']=='recipient') {
+            echo '<button class="cart" data-toggle="shopping-cart-dropdown">';
+            echo '<span class="badge" style="background-color:#cdd5f7;color:black;">0</span> ';
+            echo '<span class="glyphicon glyphicon-shopping-cart icon-flip" aria-hidden="true"></span>';
+            echo '</button>';
+            echo '   |   ';
+          }
+        }
+        echo "Hi <a href=" . base_url('index.php/profile') ." name='goProfile'>" .$_SESSION['firstName'] . " " . $_SESSION['lastName'] . "</a>"; ?>
         <br />
         <a href="<?php echo base_url('index.php/Member/logout'); ?>" name="logout">Logout</a>
         <?php }else {

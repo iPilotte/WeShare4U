@@ -32,7 +32,7 @@
             <div class="form-group">
               <label for="inputAmount" class="col-md-3 control-label">Amount : </label>
               <div class="col-md-5">
-                <input type="number" min="1" max="<?= $shoe['amount'] ?>" class="form-control" id="amount" name="amount" placeholder="Amount : Pair(s)" value="1">
+                <input type="number" min="1" max="<?= $shoe['amount'] ?>" class="form-control" id="amount" name="amount" placeholder="Amount : Pair(s)" value="<?= $shoe['amount'] ?>">
               </div>
             </div>
             <div class="form-group" style="text-align:center;">
@@ -45,15 +45,26 @@
           <?php echo form_close(); ?>
           </div>
         </div>
-        <hr>
-        <div class="row half-offset">
+        <div class="row">
+          <div class="col-md-5">
+            <hr />
+          </div>
+          <div class="col-md-2" style="text-align:center;margin-top:10px">
+            Similar Items
+          </div>
+          <div class="col-md-5">
+            <hr />
+          </div>
+        </div>
+        <div class="row col-md-offset-1">
           <?php
             if (is_array($similar)){ //Check isset
               $count = 1;
             foreach ($similar as $row){
               $itemid = $row["id"];
               $itemimg = $row["imurl"];
-              echo '<div class="col-md-2 col-sm-3 col-xs-5 donateitem">';
+              echo '<div class="col-md-3">';
+              echo '<div class="col-md-2 col-sm-3 col-xs-6 donateitem">';
               echo '<div class="donateImage">';
               echo '<a name="imgURL" href="'. base_url("index.php/DonateItem/Detail/".$itemid) .'"><img class="img-responsive" name="similarImg'.$count.'" src="'. base_url($itemimg) .'" alt height="224" width="224"></a>';
               echo '</div>';
@@ -61,11 +72,13 @@
               echo '<a href="'. base_url("index.php/DonateItem/Detail/".$itemid) .'" name="similarText'.$count.'">'. $row["name"] .'</a>';
               echo '</div>';
               echo '</div>';
+              echo '</div>';
               $count++;
             }
           }
           ?>
         </div>
+        <hr />
     </div>
   </body>
 </html>

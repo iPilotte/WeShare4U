@@ -40,6 +40,13 @@ body.weshare{
   background-position: center;
 }
 
+.icon-flip {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
 .donorButton {
     display: inline-block;
     /* width: 150px; */
@@ -73,6 +80,11 @@ body.weshare{
   text-decoration: none;
 }
 
+/**************************CART*******************/
+
+
+
+/************************************************************/
 div.donatelist{
   background-color: #cdd5f7;
   width: 100%;
@@ -169,6 +181,23 @@ div.news {
   text-decoration: none;
 }
 
+button.cart {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    -webkit-transition: background .5s ease-out;
+    -moz-transition: background .5s ease-out;
+    -o-transition: background .5s ease-out;
+    transition: background .5s ease-out;
+}
+
+button.cart:hover {
+  background: rgba(255,255,255,0.5);
+}
+
 div.footer {
   color: white;
   width: 100%;
@@ -189,7 +218,6 @@ div.footer {
   padding: 10px 0;
   background-color: #BDC7F3;
 }
-
 
 .half-offset{
     margin-left:4.166666667%
