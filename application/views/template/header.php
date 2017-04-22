@@ -22,10 +22,19 @@
           if(isset($_SESSION['role']))
           {
           if($_SESSION['role']=='recipient') {
-            echo '<button class="cart" data-toggle="shopping-cart-dropdown">';
+            echo '<div class="cartdropdown">';
+            echo '<button class="cartbtn">';
             echo '<span class="badge" style="background-color:#cdd5f7;color:black;">0</span> ';
             echo '<span class="glyphicon glyphicon-shopping-cart icon-flip" aria-hidden="true"></span>';
             echo '</button>';
+            echo '<div class="cartdropdown-content">';
+            echo    '<a href="#">Link 1</a>';
+            echo    '<a href="#">Link 2</a>';
+            echo    '<a href="#">Link 3</a>';
+            //echo    '<br />';
+            echo    '<a id="viewCartBtn" href="'. site_url('Cart') .'">View Cart</a>';
+            echo  '</div>';
+            echo '</div>';
             echo '   |   ';
           }
         }

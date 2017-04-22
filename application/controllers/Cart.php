@@ -32,18 +32,31 @@ class Cart extends CI_Controller {
  		}else{
  			redirect('');
  		}
-     $this->load->model('donateModel');
+     $this->load->model('cartModel');
    }
 
 	public function index()
 	{
-		$list = $this->donateModel->getCartDetail();
+		//$list = $this->donateModel->getCartDetail();
 		//$amount = count($list);
-		$data['list'] = $list;
+		//$data['list'] = $list;
 		$data['title'] = "Cart";
 		$this->load->view('template/header',$data);
 		$this->load->view('cart',$data);
 		$this->load->view('template/footer');
+	}
+
+	public function getShoeToCart()
+	{
+		$recipientID = $_SESSION['idNum'];
+		$shoeID = $this->input->post('$shoeID');
+		$amount = $this->input->post('$amount');
+		$shipMethod = $this->input->post('$shipMethod');
+		$shipAddress = $this->input->post('$shipAddress');
+
+		//Check if exits in cart
+
+		$this->cartModel->addShoeToCart($recipientID,$shoeID,$amount,$shipMethod,$shipAddress);
 	}
 
 }

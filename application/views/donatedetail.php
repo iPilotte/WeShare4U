@@ -26,8 +26,15 @@
           } ?>
           <hr />
           <?php $attributes = array("name" => "AddToCart_Form", "id" => "AddToCart_Form" , "class" => "form-horizontal");
-                    echo form_open_multipart("DonateItem/addToCart", $attributes);?>
+                    echo form_open_multipart("Cart/getShoeToCart", $attributes);?>
 
+            <input type="hidden" class="form-control" id="shoeID" name="shoeID" value="<?= $shoe['id'] ?>">
+            <input type="hidden" class="form-control" id="shipMethod" name="shipMethod" value="<?= $shoe['shipmethod'] ?>">
+            <?php if($shoe['shipmethod'] == 'appointment'){
+              echo '<input type="hidden" class="form-control" id="$shipAddress" name="$shipAddress" value="'.$shoe['shipaddress'].'">';
+            }else{
+              echo '<input type="hidden" class="form-control" id="$shipAddress" name="$shipAddress" value="None">';
+            } ?>
     <!-- Amount -->
             <div class="form-group">
               <label for="inputAmount" class="col-md-3 control-label">Amount : </label>
