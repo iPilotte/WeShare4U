@@ -23,14 +23,44 @@
           {
           if($_SESSION['role']=='recipient') {
             echo '<div class="cartdropdown">';
-            echo '<button class="cartbtn">';
-            echo '<span class="badge" style="background-color:#cdd5f7;color:black;">0</span> ';
+            echo '<button class="cartbtn" id="cartBtn">';
+            if (isset($cartList) && is_array($cartList)){
+              echo '<span id="cartAmount" class="badge" style="background-color:#cdd5f7;color:black;">'.count($cartList).'</span> ';
+            }else{
+              echo '<span id="cartAmount" class="badge" style="background-color:#cdd5f7;color:black;">0</span> ';
+            }
             echo '<span class="glyphicon glyphicon-shopping-cart icon-flip" aria-hidden="true"></span>';
             echo '</button>';
-            echo '<div class="cartdropdown-content">';
-            echo    '<a href="#">Link 1</a>';
-            echo    '<a href="#">Link 2</a>';
-            echo    '<a href="#">Link 3</a>';
+            echo '<div class="cartdropdown-content" id="cart-dropdown">';
+            if (isset($cartList) && is_array($cartList)){ //Check isset
+              if(is_array($cartList)){
+                $count = 0;
+                foreach ($cartList as $row){
+                  $itemid = $row['shoeID'];
+                  $itemamount = $row['amount'];
+                  $itemname = $row['name'];
+                  $itemimg = $row['imurl'];
+                  echo '<div class="row">';
+                    echo '<div class="col-md-1">';
+                    echo    '#'.$count;
+                    echo '</div>';
+                    echo '<div class="col-md-3">';
+                    echo    '<img class="img-responsive" name="shoe'.$itemid.'" src="'. base_url($itemimg) .'" alt height="100" width="100">';
+                    echo '</div>';
+                    echo '<div class="col-md-4">';
+                    echo    substr($itemname,0,10) . '...';
+                    echo '</div>';
+                    echo '<div class="col-md-3">';
+                    echo    $itemamount.' Pair(s)';
+                    echo '</div>';
+                  echo '</div>';
+                  echo '<hr />';
+                  $count++;
+                }
+              }
+            }else{
+                echo "<h3 align='center'>No shoe in cart.</h3>";
+            }
             //echo    '<br />';
             echo    '<a id="viewCartBtn" href="'. site_url('Cart') .'">View Cart</a>';
             echo  '</div>';
@@ -118,6 +148,7 @@
       </div>
   </body>
   <script>
+
   $(document).ready(function() {
     $('.navbar a.dropdown-toggle').on('click',function(e) {
         var $el = $(this);
@@ -133,5 +164,35 @@
         return false;
     });
 });
+
+$('#cartBtn').click(function(event) {
+  //$('#cart-dropdown').fadeIn(300).show();
+  $("#cart-dropdown").fadeToggle( "fast");
+  updateCart();
+});
+
+function updateCart(){
+  updateCartAmount();
+  //updateCartList();
+}
+
+function updateCartAmount(){
+  $.ajax({
+  url: "<?php echo site_url('Cart/getItemInCartAmount'); ?>",
+})
+.done(function(msg) {
+    $("#cartAmount").html(msg);
+});
+}
+
+function updateCartList(){
+  $.ajax({
+  url: "<?php echo site_url('Cart/getItemListInCart'); ?>",
+})
+.done(function(msg) {
+    $("#cart-dropdown").html(msg);
+    console.log(msg);
+});
+}
   </script>
 </html>

@@ -84,6 +84,8 @@ body.weshare{
 
 
 button.cartbtn {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -98,7 +100,7 @@ button.cartbtn {
 }
 
 button.cartbtn:hover {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.8);
 }
 
 .cartdropdown {
@@ -107,12 +109,14 @@ button.cartbtn:hover {
 }
 
 .cartdropdown-content {
+    float: right;
+    border-radius: 3px;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 260px;
+    min-width: 360px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 99;
     right: 0;
 }
 
@@ -127,12 +131,8 @@ button.cartbtn:hover {
   background-color: #f1f1f1
 }
 
-.cartdropdown:hover .cartdropdown-content {
+.cartdropdown:focus .cartdropdown-content {
     display: block;
-}
-
-.cartdropdown:hover .cartbtn {
-    background: rgba(255,255,255,0.8);
 }
 
 .viewCartBtn{

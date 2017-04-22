@@ -25,15 +25,15 @@
             echo '<p>Appointment place : '. $shoe['shipaddress'] .'</p>';
           } ?>
           <hr />
-          <?php $attributes = array("name" => "AddToCart_Form", "id" => "AddToCart_Form" , "class" => "form-horizontal");
+          <?php $attributes = array("name" => "ToCart_Form", "id" => "ToCart_Form" , "class" => "form-horizontal");
                     echo form_open_multipart("Cart/getShoeToCart", $attributes);?>
 
-            <input type="hidden" class="form-control" id="shoeID" name="shoeID" value="<?= $shoe['id'] ?>">
+            <input type="hidden" class="form-control" id="shoeId" name="shoeId" value="<?= $shoe['id'] ?>">
             <input type="hidden" class="form-control" id="shipMethod" name="shipMethod" value="<?= $shoe['shipmethod'] ?>">
             <?php if($shoe['shipmethod'] == 'appointment'){
-              echo '<input type="hidden" class="form-control" id="$shipAddress" name="$shipAddress" value="'.$shoe['shipaddress'].'">';
+              echo '<input type="hidden" class="form-control" id="shipAddress" name="shipAddress" value="'.$shoe['shipaddress'].'">';
             }else{
-              echo '<input type="hidden" class="form-control" id="$shipAddress" name="$shipAddress" value="None">';
+              echo '<input type="hidden" class="form-control" id="shipAddress" name="shipAddress" value="None">';
             } ?>
     <!-- Amount -->
             <div class="form-group">
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group" style="text-align:center;">
               <div class="col-md-12">
-                <input type="submit" class="btn btn-wonder" id="needThis"  name="needThis" id="needThis" value="I NEED THIS"></input>
+                <input type="submit" class="btn btn-wonder" id="needThisbtn"  name="needThisbtn" value="I NEED THIS"></input>
               </div>
             </div>
           <!--</form>-->
@@ -89,3 +89,27 @@
     </div>
   </body>
 </html>
+
+<script type="text/javascript">
+$('#needThisbtn').click(function(event){
+    var form_data = {
+        shoeId: $('#shoeId').val(),
+        amount: $('#amount').val(),
+        shipMethod: $('#shipMethod').val(),
+        shipAddress: $('#shipAddress').val()
+    };
+    $.ajax({
+        url: "<?php echo site_url('Cart/getShoeToCart'); ?>",
+        type: 'POST',
+        data: form_data,
+        success: function(msg) {
+          updateCart();
+          $('#cart-dropdown').fadeIn(300).show();
+          $('#cart-dropdown').delay(2000).fadeOut(300).show();
+          //console.log(msg);
+        }
+    });
+    return false;
+});
+
+</script>

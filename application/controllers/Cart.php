@@ -40,23 +40,50 @@ class Cart extends CI_Controller {
 		//$list = $this->donateModel->getCartDetail();
 		//$amount = count($list);
 		//$data['list'] = $list;
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$data['title'] = "Cart";
 		$this->load->view('template/header',$data);
 		$this->load->view('cart',$data);
 		$this->load->view('template/footer');
 	}
 
+	public function getItemListInCart()
+	{
+		$inCart = $this->cartModel->getCartList($_SESSION['idNum']);
+		if(is_array($inCart)){
+			echo $inCart;
+		}
+	}
+
+	public function getItemInCartAmount()
+	{
+		$inCart = $this->cartModel->getCartList($_SESSION['idNum']);
+		if(is_array($inCart)){
+			$itemAmount = count($inCart);
+			echo $itemAmount;
+		}else{
+			echo "0";
+		}
+	}
+
 	public function getShoeToCart()
 	{
 		$recipientID = $_SESSION['idNum'];
-		$shoeID = $this->input->post('$shoeID');
-		$amount = $this->input->post('$amount');
-		$shipMethod = $this->input->post('$shipMethod');
-		$shipAddress = $this->input->post('$shipAddress');
 
-		//Check if exits in cart
+		$shoeId = $this->input->post('shoeId');
+		$amount = $this->input->post('amount');
+		$shipMethod = $this->input->post('shipMethod');
+		$shipAddress = $this->input->post('shipAddress');
 
-		$this->cartModel->addShoeToCart($recipientID,$shoeID,$amount,$shipMethod,$shipAddress);
+		//Check if not exits in cart
+		$checkShoeInCart = $this->cartModel->checkShoeInCart($recipientID,$shoeId);
+		if(!isset($checkShoeInCart) || $checkShoeInCart==""){
+			$this->cartModel->addShoeToCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
+			echo $shoeId . "Added";
+		}else{
+			$this->cartModel->editShoeInCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
+			echo $checkShoeInCart . ": Edited";
+		}
 	}
 
 }

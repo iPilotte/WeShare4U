@@ -33,13 +33,14 @@ class DonateItem extends CI_Controller {
  			redirect('');
  		}
      $this->load->model('donateModel');
+		 $this->load->model('cartModel');
    }
 
 	public function index()
 	{
 		$list = $this->donateModel->getDonateList(1);
 		$amount = $this->donateModel->getDonateItemAmount();
-		//$amount = count($list);
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$data['list'] = $list;
 		$data['amount'] = $amount;
 		$data['title'] = "DonateItem";
@@ -53,6 +54,7 @@ class DonateItem extends CI_Controller {
 	{
 		$list = $this->donateModel->getDonateList($page);
 		$amount = $this->donateModel->getDonateItemAmount();
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$data['list'] = $list;
 		$data['title'] = "DonateItem";
 		$data['page'] = $page;
@@ -85,6 +87,7 @@ class DonateItem extends CI_Controller {
 			$amount = $this->donateModel->getSearchKeywordDonateItemAmount($search);
 		}
 
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$data['list'] = $list;
 		$data['title'] = "DonateItem Search : " . $search;
 		$data['amount'] = $amount;
@@ -104,6 +107,7 @@ class DonateItem extends CI_Controller {
 			$list = $this->donateModel->searchByType($type,$page);
 			$amount = $this->donateModel->getSearchTypeDonateItemAmount($type);
 		}
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$data['list'] = $list;
 		$data['title'] = "DonateItem Category : " . $type;
 		$data['page'] = $page;
@@ -116,6 +120,7 @@ class DonateItem extends CI_Controller {
 
 	public function Detail($id){
 		$data['id'] = $id;
+		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
 		$shoeDetail = $this->donateModel->getShoeDetail($id);
 		$data['shoe'] = $shoeDetail;
 

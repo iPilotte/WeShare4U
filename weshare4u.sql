@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2017 at 05:31 PM
+-- Generation Time: Apr 22, 2017 at 08:18 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -34,7 +34,15 @@ CREATE TABLE `cart` (
   `shipmethod` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `shipaddress` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cartID`, `recipientID`, `shoeID`, `amount`, `shipmethod`, `shipaddress`, `datetime`) VALUES
+(5, 123, 17, 1, 'post', 'None', '2017-04-22 20:08:55'),
+(6, 123, 13, 1, 'appointment', 'Test', '2017-04-22 20:10:20');
 
 -- --------------------------------------------------------
 
@@ -140,7 +148,7 @@ ALTER TABLE `shoesdonate`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `shoesdonate`
 --
