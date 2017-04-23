@@ -30,7 +30,7 @@ class CartModel extends CI_Model {
   }
 
   public function getCartList($recipientID){
-    $sql = "SELECT *
+    $sql = "SELECT shoesdonate.name , cart.amount
             FROM `cart`,`shoesdonate`
             WHERE cart.recipientID = ? AND cart.shoeID = shoesdonate.id";
     $query = $this->db->query($sql,array($recipientID));

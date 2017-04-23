@@ -32,37 +32,11 @@
             echo '<span class="glyphicon glyphicon-shopping-cart icon-flip" aria-hidden="true"></span>';
             echo '</button>';
             echo '<div class="cartdropdown-content" id="cart-dropdown">';
-            if (isset($cartList) && is_array($cartList)){ //Check isset
-              if(is_array($cartList)){
-                $count = 0;
-                foreach ($cartList as $row){
-                  $itemid = $row['shoeID'];
-                  $itemamount = $row['amount'];
-                  $itemname = $row['name'];
-                  $itemimg = $row['imurl'];
-                  echo '<div class="row">';
-                    echo '<div class="col-md-1">';
-                    echo    '#'.$count;
-                    echo '</div>';
-                    echo '<div class="col-md-3">';
-                    echo    '<img class="img-responsive" name="shoe'.$itemid.'" src="'. base_url($itemimg) .'" alt height="100" width="100">';
-                    echo '</div>';
-                    echo '<div class="col-md-4">';
-                    echo    substr($itemname,0,10) . '...';
-                    echo '</div>';
-                    echo '<div class="col-md-3">';
-                    echo    $itemamount.' Pair(s)';
-                    echo '</div>';
-                  echo '</div>';
-                  echo '<hr />';
-                  $count++;
-                }
-              }
-            }else{
-                echo "<h3 align='center'>No shoe in cart.</h3>";
-            }
-            //echo    '<br />';
-            echo    '<a id="viewCartBtn" href="'. site_url('Cart') .'">View Cart</a>';
+              echo '<div class="row">';
+                echo '<div class="col-md-12" id="cart-content" style="text-align:center;">';
+                echo '</div>';
+              echo '</div>';
+              echo  '<a class="view-cart-text" id="viewCartBtn" href="'. site_url('Cart') .'"">View Cart</a>';
             echo  '</div>';
             echo '</div>';
             echo '   |   ';
@@ -167,13 +141,13 @@
 
 $('#cartBtn').click(function(event) {
   //$('#cart-dropdown').fadeIn(300).show();
-  $("#cart-dropdown").fadeToggle( "fast");
   updateCart();
+  $("#cart-dropdown").fadeToggle( "fast");
 });
 
 function updateCart(){
   updateCartAmount();
-  //updateCartList();
+  updateCartList();
 }
 
 function updateCartAmount(){
@@ -187,11 +161,19 @@ function updateCartAmount(){
 
 function updateCartList(){
   $.ajax({
-  url: "<?php echo site_url('Cart/getItemListInCart'); ?>",
+  url: "<?php echo site_url('Cart/getItemListInCart_Dropdown'); ?>",
 })
 .done(function(msg) {
-    $("#cart-dropdown").html(msg);
-    console.log(msg);
+    var amount = msg.split('<br><br>')[0];
+    var content = msg.split('<br><br>')[1];
+    if(amount == 0){
+      $("#cart-content").html(content);
+    }else{
+      var count = 0;
+      //console.log(amount);
+      $("#cart-content").html(content);
+    }
+    //console.log(msg);
 });
 }
   </script>

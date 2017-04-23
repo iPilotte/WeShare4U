@@ -41,6 +41,7 @@
               <div class="col-md-5">
                 <input type="number" min="1" max="<?= $shoe['amount'] ?>" class="form-control" id="amount" name="amount" placeholder="Amount : Pair(s)" value="<?= $shoe['amount'] ?>">
               </div>
+              <label for="inputAmount" class="col-md-3 control-label" style="text-align:left; margin-left:-20px;">/ <?= $shoe['amount'] ?> Pair(s)</label>
             </div>
             <div class="form-group" style="text-align:center;">
               <div class="col-md-12">
@@ -104,6 +105,7 @@ $('#needThisbtn').click(function(event){
         data: form_data,
         success: function(msg) {
           updateCart();
+          $('#cart-dropdown').hide();
           $('#cart-dropdown').fadeIn(300).show();
           $('#cart-dropdown').delay(2000).fadeOut(300).show();
           //console.log(msg);

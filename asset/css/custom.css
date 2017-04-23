@@ -127,17 +127,26 @@ button.cartbtn:hover {
     display: block;
 }
 
-.cartdropdown-content a:hover {
-  background-color: #f1f1f1
-}
-
 .cartdropdown:focus .cartdropdown-content {
     display: block;
 }
 
-.viewCartBtn{
+.cartdropdown-content hr{
+  padding: 2px;
+  margin: 2px;
+}
+
+.view-cart-text{
   text-align:center;
-  background-color:#cdd5f7;
+  background-color:#3DD9D3;
+  -webkit-transition: background .2s ease-out;
+  -moz-transition: background .2s ease-out;
+  -o-transition: background .2s ease-out;
+  transition: background .2s ease-out;
+}
+
+.view-cart-text:hover{
+  background-color:#ADD9D8 !important;
 }
 
 

@@ -35,28 +35,46 @@ class Cart extends CI_Controller {
      $this->load->model('cartModel');
    }
 
-	public function index()
-	{
-		//$list = $this->donateModel->getCartDetail();
-		//$amount = count($list);
-		//$data['list'] = $list;
-		$data['cartList'] = $this->cartModel->getCartList($_SESSION['idNum']);
+	public function index(){
 		$data['title'] = "Cart";
 		$this->load->view('template/header',$data);
 		$this->load->view('cart',$data);
 		$this->load->view('template/footer');
 	}
 
-	public function getItemListInCart()
-	{
+	public function getItemListInCart_Dropdown(){
 		$inCart = $this->cartModel->getCartList($_SESSION['idNum']);
+
+		//Check if thereare items in cart
 		if(is_array($inCart)){
-			echo $inCart;
+			$itemAmount = count($inCart);
+			echo $itemAmount;
+			echo '<br>';
+			foreach($inCart as $row){
+				$itemName = $row['name'];
+				$itemAmount = $row['amount'];
+				echo '<br>';
+				echo '<hr />';
+				echo '<span alt ="'.$row['name'].'">';
+				//Cut string
+				if(strlen($itemName) > 30){
+					echo substr($itemName,0,30) . '... ';
+				}else{
+					echo $itemName;
+				}
+				echo '  :  '. $itemAmount .' Pair(s) </span>';
+			}
+			echo '<hr />';
+		}else{
+			//No item in cart
+			echo '0';
+			echo '<br>';
+			echo '<br>';
+			echo '<h4>No shoe in cart.</h4>';
 		}
 	}
 
-	public function getItemInCartAmount()
-	{
+	public function getItemInCartAmount(){
 		$inCart = $this->cartModel->getCartList($_SESSION['idNum']);
 		if(is_array($inCart)){
 			$itemAmount = count($inCart);
@@ -66,8 +84,7 @@ class Cart extends CI_Controller {
 		}
 	}
 
-	public function getShoeToCart()
-	{
+	public function getShoeToCart(){
 		$recipientID = $_SESSION['idNum'];
 
 		$shoeId = $this->input->post('shoeId');
