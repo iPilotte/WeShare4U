@@ -150,6 +150,31 @@ button.cartbtn:hover {
 }
 
 
+/******************CARTPAGE*********************************/
+
+.cart-page-table{
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.cart-page-table th{
+  text-align: center;
+}
+
+.cart-page-table .cart-page-content{
+
+}
+
+.noShoe{
+  text-align: center;
+}
+
+.totalPrice{
+  text-align:center;
+  font-size:x-large;
+}
+
+
 /************************************************************/
 div.donatelist{
   background-color: #cdd5f7;

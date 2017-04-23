@@ -39,7 +39,7 @@
             <div class="form-group">
               <label for="inputAmount" class="col-md-3 control-label">Amount : </label>
               <div class="col-md-5">
-                <input type="number" min="1" max="<?= $shoe['amount'] ?>" class="form-control" id="amount" name="amount" placeholder="Amount : Pair(s)" value="<?= $shoe['amount'] ?>">
+                <input type="number" min="1" max="<?= $shoe['amount'] ?>" class="form-control" id="amount" name="amount" placeholder="Amount : Pair(s)" value="<?php if(isset($inCartAmount)){ echo $inCartAmount; }else { echo $shoe['amount']; }  ?>">
               </div>
               <label for="inputAmount" class="col-md-3 control-label" style="text-align:left; margin-left:-20px;">/ <?= $shoe['amount'] ?> Pair(s)</label>
             </div>
@@ -58,7 +58,9 @@
             <hr />
           </div>
           <div class="col-md-2" style="text-align:center;margin-top:10px">
-            Similar Items
+            <?php if (is_array($similar)){ echo 'Similar Items'; }
+            else { echo ' No Similar Items'; }
+            ?>
           </div>
           <div class="col-md-5">
             <hr />

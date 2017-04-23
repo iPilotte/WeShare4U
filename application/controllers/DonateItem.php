@@ -121,6 +121,11 @@ class DonateItem extends CI_Controller {
 		$shoeType = $shoeDetail['type'];
 		$data['similar'] = $this->donateModel->getSimilarShoe($id,$shoeType);
 
+		$inCartAmount = $this->cartModel->getSpecificShoeAmountInCart($_SESSION['idNum'],$id);
+		if(is_numeric($inCartAmount)){
+			$data['inCartAmount'] = $inCartAmount;
+		}
+
 		$data['title'] = "DonateDetail : " . $data['shoe']['name'];
 		$this->load->view('template/header',$data);
 		$this->load->view('donatedetail',$data);

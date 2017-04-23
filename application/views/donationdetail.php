@@ -33,7 +33,7 @@
 
             </div>
             <div class="col-md-3">
-              <a class="btn btn-wonder" id="moreDonate" name="moreDonate" href="<?php echo base_url("index.php/Donation") ?>">More Donation</a>
+              <a class="btn btn-wonder" id="moreDonate" name="moreDonate" href="<?php echo base_url("index.php/Donation") ?>">Donate More</a>
             </div>
         </div>
           </div>

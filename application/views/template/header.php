@@ -88,7 +88,7 @@
                             <li class="divider"></li>
                             <li><a href="<?php echo base_url('index.php/DonateItem/Category/Athletic/1'); ?>" id="v_athletic" name="v_athletic">Athletic</a></li>
                             <li><a href="<?php echo base_url('index.php/DonateItem/Category/Boots/1'); ?>" id="v_boots" name="v_boots">Boots</a></li>
-                            <li><a href="<?php echo base_url('index.php/DonateItem/Category/Fashion_Sneakers/1'); ?>" id="v_fashionSneakers" name="v_fashionSneakers">Fashion Sneakers</a></li>
+                            <li><a href="<?php echo base_url('index.php/DonateItem/Category/Fashion_Sneakers/1'); ?>" id="v_fashionSneakers" name="v_fashionSneakers">Fashion & Sneakers</a></li>
                             <li><a href="<?php echo base_url('index.php/DonateItem/Category/Flats/1'); ?>" id="v_flats" name="v_flats">Flats</a></li>
                             <li><a href="<?php echo base_url('index.php/DonateItem/Category/Loafers/1'); ?>" id="v_loafers" name="v_loafers">Loafers</a></li>
                             <li><a href="<?php echo base_url('index.php/DonateItem/Category/Mules_Clogs/1'); ?>" id="v_mulesClogs" name="v_mulesClogs">Mules & Clogs</a></li>
@@ -139,8 +139,19 @@
     });
 });
 
+  <?php
+  //IF recipient go UPDATE CART
+  if(isset($_SESSION['firstName'])) {
+    if(isset($_SESSION['role'])){
+      if($_SESSION['role']=='recipient') {
+        echo '$( document ).ready(function() {';
+          echo 'updateCart();';
+        echo '});';
+      }
+    }
+  } ?>
+
 $('#cartBtn').click(function(event) {
-  //$('#cart-dropdown').fadeIn(300).show();
   updateCart();
   $("#cart-dropdown").fadeToggle( "fast");
 });
