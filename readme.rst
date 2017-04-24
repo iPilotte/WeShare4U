@@ -8,4 +8,4 @@ Using
 
 - HTML
 - PHP : CodeIgniter Framework
-- JQuery
+- JQuery, ajax
