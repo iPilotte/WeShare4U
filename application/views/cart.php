@@ -33,13 +33,13 @@
             </tbody>
           </table>
           <div class="row totalPrice">
-            <span id="TotalPrice">Total shipping cost :  baht</span>
+            <span id="TotalPrice">Total shipping costs :  baht</span>
           </div>
         </div>
         <hr>
         <div  align="center" style="margin-bottom:50px">
-          <a id="continueLookingbtn" href="<?= site_url('DonateItem') ?>" style="margin-right:10px;"><button class="btn btn-wonder btn-lg">Continue Looking</button></a>
-          <a id="readybtn" href="<?= site_url('Checkout') ?>" style="margin-left:10px;"><button class="btn btn-wonder btn-lg">I ready to get them</button></a><br>
+          <a href="<?= site_url('DonateItem') ?>" style="margin-right:10px;"><button id="continueLookingbtn" class="btn btn-wonder btn-lg">Continue Looking</button></a>
+          <a href="<?= site_url('Checkout') ?>" style="margin-left:10px;"><button  id="readybtn" class="btn btn-wonder btn-lg">I ready to get them</button></a><br>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
           }else{
             $("#cartTableContent").html(content);
           }
-          $("#TotalPrice").html('Total shipping cost : ' +TotalPrice + ' baht');
+          $("#TotalPrice").html('Total shipping costs : ' +TotalPrice + ' baht');
         }
         //console.log(msg);
     });

@@ -45,6 +45,8 @@ class Cart extends CI_Controller {
 	public function getItemListInCart_Page(){
 		$inCart = $this->cartModel->getCartList_Page($_SESSION['idNum']);
 
+		$recipientPostCode = $this->cartModel->getPostCode($_SESSION['idNum']);
+
 		//Check if thereare items in cart
 		if(is_array($inCart)){
 			$itemAmount = count($inCart);
@@ -54,11 +56,13 @@ class Cart extends CI_Controller {
 			$AmountSum = 0;
 			foreach($inCart as $row){
 				$cost = 0;
+				$postChecked = '';
+				$companyChecked = '';
 				$itemID = $row['shoeID'];
 				$itemImg = $row['imurl'];
 				$itemName = $row['name'];
 				$itemMaxAmount = $row['amount'];
-				$itemDetail = $row['detail'];
+				//$itemDetail = $row['detail'];
 				//$itemGender = $row['gender'];
 				//$itemSize = $row['size'];
 				//$itemSizeType = $row['sizeType'];
@@ -66,30 +70,41 @@ class Cart extends CI_Controller {
 				$itemAmountInCart = $row['Camount'];
 				//$itemShippingMethod = $row['Cshipmethod'];
 				//$itemShippingAddress = $row['Cshipaddress'];
+
+				//If wanna cal costs by postcode
+				$itemDonorID = $row['donorID'];
+				$donorPostCode = $this->cartModel->getPostCode($itemDonorID);
+
 				echo '<br>';
 				echo '<tr>';
 				echo	'<td align="center">'. $count .'</td>'; //Count
 				echo	'<td align="center"><img class="img-responsive" src="'. base_url($itemImg) .'" alt height="150" width="150"></td>'; //Image
 				echo	'<td>';
-				echo	'<p>Name : '.$itemName.'</p><p>Detail : '.$itemDetail.'</p><p>Size : '.$row['size'].' '.$row['sizeType'].' | Gender : '. $row['gender'] .' | Type : '. str_replace("_"," & ",$row['type']) .'</p>';
+				echo	'<p>Name : '.$itemName.'</p>';
 				if ($row['Cshipmethod'] == 'appointment'){
 					echo '<p>Shipping Methods : Appointment</p>';
 					echo '<p>Appointment Place : '.$row['Cshipaddress'].'</p>';
 				}else {
 					if($row['Cshipmethod'] == 'post'){
 						$postChecked = 'checked';
-						$companyChecked = '';
+
+						//If Shiomethod = post then Add item to calculate price
 						$AmountSum += $itemAmountInCart;
 						$cost = $itemAmountInCart*100;
 					}else if($row['Cshipmethod'] == 'company'){
-						$postChecked = '';
 						$companyChecked = 'checked';
 					}
-					echo '<label class="radio-inline control-label"><input type="radio" name="shippingMethod'.$itemID.'" id="shippingMethod'.$itemID.'" onclick="ChangeShippingMethod('.$itemID.',\'post\')" value="post" '.$postChecked.'>Post/Mail</label>
-							<label class="radio-inline control-label"><input type="radio" name="shippingMethod'.$itemID.'" id="shippingMethod'.$itemID.'" onclick="ChangeShippingMethod('.$itemID.',\'company\')" value="company" '.$companyChecked.'>Weshare Company</label>';
+					echo '<span>Shipping Method : </span>';
+					echo '<label class="radio-inline control-label"><input type="radio" name="shippingMethod'.$itemID.'" id="shippingMethod'.$itemID.'" onclick="ChangeShippingMethod('.$itemID.',\'post\')" value="post" '.$postChecked.'>Post/Mail</label>';
+					echo '<label class="radio-inline control-label"><input type="radio" name="shippingMethod'.$itemID.'" id="shippingMethod'.$itemID.'" onclick="ChangeShippingMethod('.$itemID.',\'company\')" value="company" '.$companyChecked.'>Weshare Company</label>';
+					echo '<p></p>'; //Align layout
 					//echo '<br><textarea class="form-control" name="shippingAddress'.$itemID.'" id="shippingAddress'.$itemID.'" placeholder="ShippingAddress" style="display: none;">'.$row['Cshipaddress'].'</textarea>';
 				}
-				echo 	'<p>Shipping costs : '. $cost .' baht</p>';
+				echo 	'<p>Shipping costs : '. $cost .' baht';
+				if($postChecked == 'checked'){
+					echo ' (Postcode : '.$recipientPostCode.') ';
+				}
+				echo  '</p>';
 				echo  '</td>'; //Detail
 				echo	'<td align="center"><input type="number" min="1" max="'. $itemMaxAmount . '" class="form-control" id="amount'.$itemID.'" name="amount'.$itemID.'" placeholder="Amount : Pair(s)" value="'.$itemAmountInCart.'" onclick="UpdateItemAmount('.$itemID.')"></td>'; //Edit-Delete
 				echo	'<td align="center"><div class="btn-group" role="group" aria-label="Edit/Delete">';
@@ -102,6 +117,8 @@ class Cart extends CI_Controller {
 			echo '<hr />';
 			echo '<br>';
 			echo '<br>';
+
+			//Calculate Price
 			echo $AmountSum*100;
 		}else{
 			//No item in cart
@@ -162,14 +179,23 @@ class Cart extends CI_Controller {
 		$shipMethod = $this->input->post('shipMethod');
 		$shipAddress = $this->input->post('shipAddress');
 
+		$itemMaxAmount = $this->cartModel->getMaxItemAmount($shoeId);
+
 		//Check if not exits in cart
 		$checkShoeInCart = $this->cartModel->checkShoeInCart($recipientID,$shoeId);
-		if(!isset($checkShoeInCart) || $checkShoeInCart==""){
-			$this->cartModel->addShoeToCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
-			echo $shoeId . "Added";
-		}else{
-			$this->cartModel->editShoeInCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
-			echo $checkShoeInCart . ": Edited";
+
+		//If input > max then input = max
+		if($amount > $itemMaxAmount){
+			$amount = $itemMaxAmount;
+		}
+		if((is_numeric($amount)) && ($amount >= 1) && ($amount <= $itemMaxAmount)){
+			if(!isset($checkShoeInCart) || $checkShoeInCart==""){
+				$this->cartModel->addShoeToCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
+				echo $shoeId . "Added";
+			}else{
+				$this->cartModel->editShoeInCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
+				echo $checkShoeInCart . ": Edited";
+			}
 		}
 	}
 
@@ -179,7 +205,7 @@ class Cart extends CI_Controller {
 		$CamountNew = $this->input->post('Camount');
 		$itemMaxAmount = $this->cartModel->getMaxItemAmount($shoeID);
 
-		if((is_numeric($CamountNew)) && ($CamountNew > 0) && ($CamountNew <= $itemMaxAmount)){
+		if((is_numeric($CamountNew)) && ($CamountNew >= 1) && ($CamountNew <= $itemMaxAmount)){
 			$updateCart = $this->cartModel->updateShoeAmountInCart($recipientID,$shoeID,$CamountNew);
 			echo $updateCart;
 		}
@@ -196,6 +222,13 @@ class Cart extends CI_Controller {
 	public function removeItemFormCart(){
 		$recipientID = $_SESSION['idNum'];
 		$shoeID = $this->input->post('shoeID');
+
+		$removeItemInCart = $this->cartModel->removeItem($recipientID,$shoeID);
+		echo $removeItemInCart;
+	}
+
+	public function calculatePriceByPostCode(){
+		$recipientID = $_SESSION['idNum'];
 
 		$removeItemInCart = $this->cartModel->removeItem($recipientID,$shoeID);
 		echo $removeItemInCart;

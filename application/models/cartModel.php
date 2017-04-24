@@ -30,7 +30,7 @@ class CartModel extends CI_Model {
   }
 
   public function getCartList_Page($recipientID){
-    $sql = "SELECT shoesdonate.name , shoesdonate.detail , shoesdonate.amount , shoesdonate.gender , shoesdonate.size , shoesdonate.sizeType , shoesdonate.type  , shoesdonate.imurl , cart.recipientID , cart.shoeID , cart.Camount , cart.Cshipmethod , cart.Cshipaddress
+    $sql = "SELECT shoesdonate.name , shoesdonate.detail , shoesdonate.amount , shoesdonate.gender , shoesdonate.size , shoesdonate.sizeType , shoesdonate.type  , shoesdonate.imurl , shoesdonate.donorID , cart.recipientID , cart.shoeID , cart.Camount , cart.Cshipmethod , cart.Cshipaddress
             FROM `cart`,`shoesdonate`
             WHERE cart.recipientID = ? AND cart.shoeID = shoesdonate.id";
     $query = $this->db->query($sql,array($recipientID));
@@ -103,6 +103,22 @@ class CartModel extends CI_Model {
     $query = $this->db->query($sql,array($Cshipmethod,$recipientID,$shoeID));
     return $shoeID.'Updated';
   }
+
+
+  //Get PostCode
+  public function getPostCode($memberID){
+    $sql = "SELECT member.postcode
+            FROM `member`
+            WHERE idNumber = ?";
+    $query = $this->db->query($sql,array($memberID));
+    if($query->num_rows() >= 1){
+      $row = $query->row_array();
+      return $row['postcode'];
+    }else{
+      return false;
+    }
+  }
+
 
   //DonateItem/Detail/xx
   public function getSpecificShoeAmountInCart($recipientID,$shoeID){
