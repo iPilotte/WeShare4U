@@ -91,6 +91,7 @@ class Cart extends CI_Controller {
 						//If Shiomethod = post then Add item to calculate price
 						$AmountSum += $itemAmountInCart;
 						$cost = $itemAmountInCart*100;
+						//$cost = $this->calculatePriceByPostCode($recipientPostCode,$donorPostCode);
 					}else if($row['Cshipmethod'] == 'company'){
 						$companyChecked = 'checked';
 					}
@@ -227,11 +228,9 @@ class Cart extends CI_Controller {
 		echo $removeItemInCart;
 	}
 
-	public function calculatePriceByPostCode(){
-		$recipientID = $_SESSION['idNum'];
-
-		$removeItemInCart = $this->cartModel->removeItem($recipientID,$shoeID);
-		echo $removeItemInCart;
+	public function calculatePriceByPostCode($recipientPostCode,$donorPostCode){
+		$cost = 0;
+		return $cost;
 	}
 
 }
