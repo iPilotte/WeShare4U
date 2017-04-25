@@ -101,16 +101,19 @@ class Cart extends CI_Controller {
 					echo '<p></p>'; //Align layout
 					//echo '<br><textarea class="form-control" name="shippingAddress'.$itemID.'" id="shippingAddress'.$itemID.'" placeholder="ShippingAddress" style="display: none;">'.$row['Cshipaddress'].'</textarea>';
 				}
-				echo 	'<p>Shipping costs : '. $cost .' baht';
 				if($postChecked == 'checked'){
-					echo ' (Postcode : '.$recipientPostCode.') ';
+					echo 	'<p>Shipping costs : '. $cost .' baht';
+					echo ' (Postcode : '.$donorPostCode.') ';
 				}
 				echo  '</p>';
 				echo  '</td>'; //Detail
-				echo	'<td align="center"><input type="number" min="1" max="'. $itemMaxAmount . '" class="form-control" id="amount'.$itemID.'" name="amount'.$itemID.'" placeholder="Amount : Pair(s)" value="'.$itemAmountInCart.'" onclick="UpdateItemAmount('.$itemID.')"></td>'; //Edit-Delete
+				echo	'<td align="center"><input type="number" min="1" max="'. $itemMaxAmount . '" class="form-control" id="amount'.$itemID.'" name="amount'.$itemID.'" placeholder="Amount : Pair(s)" value="'.$itemAmountInCart.'" onclick="UpdateItemAmount('.$itemID.')" onkeyup="UpdateItemAmount('.$itemID.')">';
+				echo  '<p id="amount-error-msg-cart"></p>';
+				echo  '</td>'; //Edit-Delete
 				echo	'<td align="center"><div class="btn-group" role="group" aria-label="Edit/Delete">';
 				echo  '<a class="btn btn-info" id="edit'.$itemID.'" href="'. site_url('DonateItem/Detail/'.$itemID).'"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>';
-				echo  '<button class="btn btn-danger" id="delete'.$itemID.'" onclick="RemoveItemInCart('.$itemID.')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+				//echo  '<button class="btn btn-danger" id="delete'.$itemID.'" onclick="RemoveItemInCart('.$itemID.')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
+				echo  '<button class="btn btn-danger" id="delete'.$itemID.'" onclick="RemoveItemInCartModal('.$itemID.')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>';
 				echo  '</div></td>'; //Edit-Delete
 				echo '</tr>';
 				$count++;
@@ -138,12 +141,15 @@ class Cart extends CI_Controller {
 			$itemAmount = count($inCart);
 			echo $itemAmount;
 			echo '<br>';
+			$count = 0;
 			foreach($inCart as $row){
+				$count++;
 				$itemName = $row['name'];
 				$itemAmount = $row['Camount'];
 				echo '<br>';
 				echo '<hr />';
 				echo '<span alt ="'.$row['name'].'">';
+				echo '#'. $count .' : ';
 				//Cut string
 				if(strlen($itemName) > 30){
 					echo substr($itemName,0,30) . '... ';
@@ -197,6 +203,8 @@ class Cart extends CI_Controller {
 				$this->cartModel->editShoeInCart($recipientID,$shoeId,$amount,$shipMethod,$shipAddress);
 				echo $checkShoeInCart . ": Edited";
 			}
+		}else{
+			echo '*Plase enter correct amount.';
 		}
 	}
 
@@ -209,6 +217,8 @@ class Cart extends CI_Controller {
 		if((is_numeric($CamountNew)) && ($CamountNew >= 1) && ($CamountNew <= $itemMaxAmount)){
 			$updateCart = $this->cartModel->updateShoeAmountInCart($recipientID,$shoeID,$CamountNew);
 			echo $updateCart;
+		}else{
+			echo '*Plase enter correct amount.';
 		}
 	}
 
@@ -228,7 +238,7 @@ class Cart extends CI_Controller {
 		echo $removeItemInCart;
 	}
 
-	public function calculatePriceByPostCode($recipientPostCode,$donorPostCode){
+	function calculatePriceByPostCode($recipientPostCode,$donorPostCode){
 		$cost = 0;
 		return $cost;
 	}

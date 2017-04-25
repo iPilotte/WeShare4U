@@ -37,16 +37,46 @@
           </div>
         </div>
         <hr>
-        <div  align="center" style="margin-bottom:50px">
+        <div  align="right" style="margin-bottom:50px">
           <a href="<?= site_url('DonateItem') ?>" style="margin-right:10px;"><button id="continueLookingbtn" class="btn btn-wonder btn-lg">Continue Looking</button></a>
           <a href="<?= site_url('Checkout') ?>" style="margin-left:10px;"><button  id="readybtn" class="btn btn-wonder btn-lg">I ready to get them</button></a><br>
         </div>
       </div>
-    </div>
+      <div class="modal fade" id="confirmRemove" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h2 class="modal-title">Confirm</h2>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+              <h3>Are you sure?</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" data-dismiss="modal" class="btn btn-wonder" id="confirmRemoveShoe">Confirm</button>
+              <button type="button" data-dismiss="modal" class="btn" id="cencelRemoveShoe">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
+</div>
 </body>
 </html>
+<script src="<?php echo base_url('asset/js/custom.js'); ?>"></script>
 <script type="text/javascript">
+
+  function RemoveItemInCartModal(id){
+    //console.log('Remove'+id);
+    $('#confirmRemoveShoe').attr({"onclick" : "RemoveItemInCart("+id+")"})
+    $('#confirmRemove').modal({
+        backdrop: 'static',
+        keyboard: false
+      })
+  }
+
   $( document ).ready(function() {
     UpdateCartPage('Yes');
   });
@@ -97,24 +127,31 @@
   }
 
   function UpdateItemAmount(id){
-    var form_data = {
-        shoeID : id,
-        Camount : $('#amount'+id).val()
-    };
-    $.ajax({
-        url: "<?php echo site_url('Cart/updateItemAmount'); ?>",
-        type: 'POST',
-        data: form_data,
-        success: function(msg) {
-          updateCart();
-          UpdateCartPage('No');
-          //console.log(msg)
-        }
-    });
-    return false;
+    if($('#amount'+id).val() == '0'){
+      RemoveItemInCartModal(id);
+    }else{
+      var form_data = {
+          shoeID : id,
+          Camount : $('#amount'+id).val()
+      };
+      $.ajax({
+          url: "<?php echo site_url('Cart/updateItemAmount'); ?>",
+          type: 'POST',
+          data: form_data,
+          success: function(msg) {
+            updateCart();
+            //UpdateCartPage('No');
+            cartPage_amountError(msg);
+            //cartPage_amountError(msg);
+            //console.log(msg)
+          }
+      });
+      return false;
+    }
   }
 
   function RemoveItemInCart(id){
+    $('#confirmRemoveShoe').attr({"onclick" : ""})
     var form_data = {
         shoeID : id
     };

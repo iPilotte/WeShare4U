@@ -22,7 +22,7 @@ class Modal_Login extends CI_Controller {
 
         //$response = $this->recaptcha->verifyResponse($recaptcha);
         //echo strlen($recaptcha);
-        if ($this->form_validation->run() == FALSE || strlen($recaptcha) == 0/*!isset($response['success']) || $response['success'] <> true*/)
+        if ($this->form_validation->run() == FALSE || strlen($recaptcha) == 0 /*!isset($response['success']) || $response['success'] <> true*/)
         {   //validation fails
           if($this->form_validation->run() == FALSE){
             echo validation_errors();

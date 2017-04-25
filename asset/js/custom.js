@@ -1,3 +1,19 @@
+function cartPage_amountError(msg){
+  if(msg.includes("*Plase enter correct amount.")){
+    $('#amount-error-msg-cart').html('<div class="h5" style="color:red;">*Plase enter correct amount.</div>');
+  }else{
+    $('#amount-error-msg-cart').html('');
+  }
+}
+
+function donationDetail_amountError(msg){
+  if(msg.includes("*Plase enter correct amount.")){
+    $('#amount-error-msg-detail').html('<div class="h5" style="color:red;">*Plase enter correct amount.</div>');
+  }else{
+    $('#amount-error-msg-detail').html('');
+  }
+}
+
 function inputError_Donation(msg){
   if(msg.includes("The Image field is required.")){
     $('#imgFile-alert-msg').html('<div class="h5" style="color:red;">Please choose an image.</div>');

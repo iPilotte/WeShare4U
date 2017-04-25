@@ -43,6 +43,9 @@
               </div>
               <label for="inputAmount" class="col-md-3 control-label" style="text-align:left; margin-left:-20px;">/ <?= $shoe['amount'] ?> Pair(s)</label>
             </div>
+            <div class="col-md-8 col-md-offset-3" style="margin-top:-15px">
+              <p id="amount-error-msg-detail"></p>
+            </div>
             <div class="form-group" style="text-align:center;">
               <div class="col-md-12">
                 <input type="submit" class="btn btn-wonder" id="needThisbtn"  name="needThisbtn" value="I NEED THIS"></input>
@@ -92,9 +95,12 @@
     </div>
   </body>
 </html>
-
+<script src="<?php echo base_url('asset/js/custom.js'); ?>"></script>
 <script type="text/javascript">
 $('#needThisbtn').click(function(event){
+  if($('#amount').val() == '0'){
+
+  }else{
     var form_data = {
         shoeId: $('#shoeId').val(),
         amount: $('#amount').val(),
@@ -106,6 +112,7 @@ $('#needThisbtn').click(function(event){
         type: 'POST',
         data: form_data,
         success: function(msg) {
+          donationDetail_amountError(msg);
           updateCart();
           $('#cart-dropdown').hide();
           $('#cart-dropdown').fadeIn(300).show();
@@ -114,6 +121,7 @@ $('#needThisbtn').click(function(event){
         }
     });
     return false;
+  }
 });
 
 </script>
